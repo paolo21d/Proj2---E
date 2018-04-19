@@ -6,20 +6,21 @@
 #define PROJEKT1_COMPLEX_H
 
 #include <iostream>
-
+template <typename Tre, typename Tim>
 class Complex {
 private:
-	double re, im;
+	Tre re;
+	Tim 
 public:
 	Complex();
-	Complex(double i, double r);
+	Complex(Tre r, Tim i);
 	Complex(const Complex &com); //konstruktor kopiujacy
-	Complex(double r);
+	Complex(Tre r);
 	~Complex();
 
-	double getRe() const;
-	double getIm() const;
-	void ustaw(double r, double i);
+	Tre getRe() const;
+	Tim getIm() const;
+	void ustaw(Tre r, Tim i);
 	double modul();
 	double argument();
 

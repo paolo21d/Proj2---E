@@ -6,38 +6,40 @@
 #include <cmath>
 
 using namespace std;
-
-Complex::Complex(double r, double i) {
+template <typename Tre, typename Tim>
+Complex<Tre, Tim>::Complex(Tre r, Tim i) {
 	//cout<<"Konstruktor inicjujacy"<<endl;
 	re = r;
 	im = i;
 }
-
-Complex::Complex() {
+template <typename Tre, typename Tim>
+Complex<Tre, Tim>::Complex() {
 	re = 0;
 	im = 0;
 }
-
-Complex::Complex(double r) {
+template <typename Tre, typename Tim>
+Complex<Tre, Tim>::Complex(Tre r) {
 	re = r;
 	im = 0;
 }
-
-Complex::Complex(const Complex &com) {
+template <typename Tre, typename Tim>
+Complex<Tre, Tim>::Complex(const Complex &com) {
 	re = com.re;
 	im = com.im;
 }
-
-Complex::~Complex() {
+template <typename Tre, typename Tim>
+Complex<Tre, Tim>::~Complex() {
 	//cout << "Destruktor " << this << endl;
 }
 
 /////////Metody
-double Complex::modul() {
+template <typename Tre, typename Tim>
+double Complex<Tre, Tim>::modul() {
 	return sqrt(re * re + im * im);
 }
 
-double Complex::argument() {
+template <typename Tre, typename Tim>
+double Complex<Tre, Tim>::argument() {
 	if (this->modul() == 0) {
 		cout << "Modul=0, brak argumentu" << endl;
 		return 0;
@@ -45,25 +47,29 @@ double Complex::argument() {
 	return asin(im / this->modul());
 }
 
-void Complex::ustaw(double r, double i) {
+template <typename Tre, typename Tim>
+void Complex<Tre, Tim>::ustaw(double r, double i) {
 	re = r;
 	im = i;
 }
 
-double Complex::getIm() const {
+template <typename Tre, typename Tim>
+double Complex<Tre, Tim>::getIm() const {
 	return this->im;
 }
 
-double Complex::getRe() const {
+template <typename Tre, typename Tim>
+double Complex<Tre, Tim>::getRe() const {
 	return this->re;
 }
 
 //przeciazenia operatorow
-Complex operator+(const Complex &z1, const Complex &z2) {
+template <typename Tre, typename Tim>
+Complex<Tre, Tim> operator+(const Complex &z1, const Complex &z2) {
 	//Complex z (z1.getRe()+z2.getRe(), z1.getIm()+z2.getIm());
 	//return  z;
 	//return  Complex (z1.getRe()+z2.getRe(), z1.getIm()+z2.getIm())
-	return Complex(z1.re + z2.re, z1.im + z2.im);
+	return Complex<Tre, Tim> (z1.re + z2.re, z1.im + z2.im);
 }
 
 Complex operator-(const Complex &z1, const Complex &z2) {
@@ -92,20 +98,22 @@ Complex &operator+=(double r, Complex &z1) {
 Complex z(z1.getRe() + r, z1.getIm());
 return z;
 }*/
-
-Complex &Complex::operator+=(const Complex &z) {
+template <typename Tre, typename Tim>
+Complex &Complex<Tre, Tim>::operator+=(const Complex &z) {
 	this->re += z.re;
 	this->im += z.im;
 	return *this;
 }
 
-Complex &Complex::operator-=(const Complex &z) {
+template <typename Tre, typename Tim>
+Complex &Complex<Tre, Tim>::operator-=(const Complex &z) {
 	this->re -= z.re;
 	this->im -= z.im;
 	return *this;
 }
 
-Complex &Complex::operator*=(const Complex &z) {
+template <typename Tre, typename Tim>
+Complex &Complex<Tre, Tim>::operator*=(const Complex &z) {
 	this->re = this->re * z.re - this->im * z.im;
 	this->im = this->re * z.im + this->im * z.re;
 	return *this;
